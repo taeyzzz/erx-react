@@ -6,6 +6,9 @@ const initialState = {
   listBlog: [],
   getListBlog: {
     fetchStatus: FETCH_STATUS_IDLE
+  },
+  createBlog: {
+    fetchStatus: FETCH_STATUS_IDLE
   }
 }
 
@@ -45,6 +48,30 @@ export const blogSlice = createSlice({
     getListBlogIdle: (state) => {
       state.getListBlog.fetchStatus = FETCH_STATUS_IDLE
     },
+    createBlogRequest: (state) => {
+      state.createBlog.fetchStatus = FETCH_STATUS_REQUEST
+    },
+    createBlogSuccess: {
+      reducer: (state, action) => {
+        state.createBlog.fetchStatus = FETCH_STATUS_SUCCESS
+      },
+    },
+    createBlogFailure: {
+      reducer: (state, action) => {
+        state.createBlog.fetchStatus = FETCH_STATUS_FAILURE
+        state.createBlog.error = action.payload.error
+      },
+      prepare: (error) => {
+        return {
+          payload: {
+            error
+          }
+        }
+      }
+    },
+    createBlogIdle: (state) => {
+      state.createBlog.fetchStatus = FETCH_STATUS_IDLE
+    },
   }
 })
 
@@ -53,6 +80,10 @@ export const {
   getListBlogSuccess,
   getListBlogFailure,
   getListBlogIdle,
+  createBlogRequest,
+  createBlogSuccess,
+  createBlogFailure,
+  createBlogIdle,
 } = blogSlice.actions
 
 export default blogSlice.reducer

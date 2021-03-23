@@ -4,7 +4,11 @@ import {
   getListBlogRequest,
   getListBlogSuccess,
   getListBlogFailure,
-  getListBlogIdle
+  getListBlogIdle,
+  createBlogRequest,
+  createBlogSuccess,
+  createBlogFailure,
+  createBlogIdle
 } from '../../slices/blog'
 
 export const getListBlog = () => async dispatch => {
@@ -20,5 +24,23 @@ export const getListBlog = () => async dispatch => {
   }
   finally {
     dispatch(getListBlogIdle())
+  }
+}
+
+export const createBlog = (data) => async dispatch => {
+  dispatch(createBlogRequest())
+  try {
+    const response = await post({
+      url: "/blog",
+      payload: data
+    })
+    console.log(response);
+    dispatch(createBlogSuccess(response))
+  }
+  catch (error) {
+    dispatch(createBlogFailure(error))
+  }
+  finally {
+    dispatch(createBlogIdle())
   }
 }

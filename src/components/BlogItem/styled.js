@@ -8,21 +8,22 @@ export default styled.div`
   --max-lines: 3;
   .image-container{
     width: 100%;
+    height: 200px;
     img{
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
   }
   .date-container{
-    padding: 20px;
+    padding: 16px 20px;
   }
   .title-container{
     position: relative;
-    padding: 20px;
+    padding: 16px 20px;
   }
   .description-result-container{
-    padding: 20px;
+    padding: 16px 20px;
     *{
       white-space: nowrap;
       overflow: hidden;
