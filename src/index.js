@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux'
+
+import createStore from './store'
+import initializeApplicationRoute from './routes'
 import reportWebVitals from './reportWebVitals';
+
+import "./asset/global-style.scss"
+
+const store = createStore()
+const routes = initializeApplicationRoute()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      {routes}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
