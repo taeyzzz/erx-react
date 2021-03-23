@@ -19,7 +19,7 @@ const BlogDetailPage = () => {
   const history = useHistory()
   const createBlogFetchStatus = useSelector(state => state.blog.createBlog.fetchStatus)
 
-  const { blogFormData, handleBlogFormChange, preparedPayload } = useBlogForm()
+  const { blogFormData, handleBlogFormChange, preparedPayload, isFormValid } = useBlogForm()
 
   useEffect(() => {
     if(createBlogFetchStatus === FETCH_STATUS_SUCCESS){
@@ -66,6 +66,7 @@ const BlogDetailPage = () => {
           label="Title"
           value={blogFormData.title.value}
           onChange={handleTitleChange}
+          errorText={blogFormData.title.error}
         />
         <TextInput
           id="image-input"
@@ -74,6 +75,7 @@ const BlogDetailPage = () => {
           label="Image URL"
           value={blogFormData.imageUrl.value}
           onChange={handleImageUrlChange}
+          errorText={blogFormData.imageUrl.error}
         />
       </div>
       <div className="form-row-container">
@@ -84,6 +86,7 @@ const BlogDetailPage = () => {
           label="Description"
           value={blogFormData.description.value}
           onChange={handleDescriptionChange}
+          errorText={blogFormData.description.error}
         />
       </div>
       <div className="form-row-container">
@@ -91,6 +94,7 @@ const BlogDetailPage = () => {
           className="btn"
           text="Create"
           onClick={handleCreateBlog}
+          disabled={!isFormValid}
         />
         <Button
           className="btn"

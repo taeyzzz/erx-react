@@ -39,7 +39,8 @@ export default styled.div`
     .label-container {
       color: red;
     }
-    .input {
+    .input,
+    .textarea {
       border: 1px solid red;
     }
     .error-message-container {
